@@ -58,10 +58,8 @@ mainRouter.get(resource, (req, res, urlId) => {
           }
         });
       });
-    // res.end();
     }
   });
-  // res.end();
 });
 
 mainRouter.put(resource, (req, res, urlId) => {
@@ -71,7 +69,8 @@ mainRouter.put(resource, (req, res, urlId) => {
 
 mainRouter.delete(resource, (req, res, urlId) => {
   console.log(resource + ' DELETE hit');
-  console.log(urlId);
+  fs.unlink(__dirname + '/../data' + req.url + '.json');
+  // fs.unlink(__dirname + req.url + '.json');
   res.end();
 });
 
