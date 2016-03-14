@@ -5,6 +5,8 @@ exports.mainRouter = mainRouter;
 console.dir(mainRouter);
 var mainRoute = require(__dirname + '/routes/mainRoute');
 var testRoute = require(__dirname + '/routes/testRoute');
+var albumRoute = require(__dirname + '/routes/albumRoute');
+var songRoute = require(__dirname + '/routes/songRoute');
 // var testRoute = require(__dirname + '/routes/testRoute')
 
 
