@@ -5,20 +5,21 @@ var fs = require('fs');
 // var router = require('../lib/router');
 // var mainRouter = router.mainRouter;
 var mainRouter = require('../server').mainRouter;
+var resource = 'test';
 
 var nextId = 0;
 
 var writeLog = function(id, chunk) {
   var padId = ('000000' + id).substr(-6);
   console.log(padId);
-  var newFilename = __dirname + '/../data/' + padId + 'test.json';
+  var newFilename = __dirname + '/../data/' + padId + resource + '.json';
   fs.writeFile(newFilename, chunk.toString(), () => {
     console.log(newFilename + ' finished writing');
   });
 };
 
-mainRouter.post('/test/', (req, res) => {
-  console.log('test POST hit');
+mainRouter.post('/' + resource + '/', (req, res) => {
+  console.log(resource + ' POST hit');
   req.on('data', (data) => {
     if(nextId == 0) {
       fs.readdir('./data', (err, files) => {
@@ -41,18 +42,18 @@ mainRouter.post('/test/', (req, res) => {
   res.end();
 });
 
-mainRouter.get('/test/', (req, res) => {
-  console.log('test GET hit');
+mainRouter.get('/' + resource + '/', (req, res) => {
+  console.log(resource + ' GET hit');
   res.end();
 });
 
-mainRouter.put('/test/', (req, res) => {
-  console.log('test PUT hit');
+mainRouter.put('/'+ resource + '/', (req, res) => {
+  console.log(resource + ' PUT hit');
   res.end();
 });
 
-mainRouter.delete('/test/', (req, res) => {
-  console.log('test DELETE hit');
+mainRouter.delete('/' + resource + '/', (req, res) => {
+  console.log(resource + ' DELETE hit');
   res.end();
 });
 
