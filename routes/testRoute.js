@@ -64,13 +64,15 @@ mainRouter.get(resource, (req, res, urlId) => {
 
 mainRouter.put(resource, (req, res, urlId) => {
   console.log(resource + ' PUT hit');
-  res.end();
+  req.on('data', (data) => {
+    writeLog(urlId, data);
+    res.end();
+  });
 });
 
 mainRouter.delete(resource, (req, res, urlId) => {
   console.log(resource + ' DELETE hit');
   fs.unlink(__dirname + '/../data' + req.url + '.json');
-  // fs.unlink(__dirname + req.url + '.json');
   res.end();
 });
 
