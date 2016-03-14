@@ -12,8 +12,9 @@ var nextId = 0;
 var writeLog = function(id, chunk) {
   var padId = ('000000' + id).substr(-6);
   console.log(padId);
-  var newFilename = __dirname + '/../data/' + padId + resource + '.json';
-  fs.writeFile(newFilename, chunk.toString(), () => {
+  var newFilename = __dirname + '/../data/' + resource + '/' + padId + '.json';
+  fs.writeFile(newFilename, chunk.toString(), (err) => {
+    if(err) throw err;
     console.log(newFilename + ' finished writing');
   });
 };
@@ -22,7 +23,7 @@ mainRouter.post('/' + resource + '/', (req, res) => {
   console.log(resource + ' POST hit');
   req.on('data', (data) => {
     if(nextId == 0) {
-      fs.readdir('./data', (err, files) => {
+      fs.readdir('./data/' + resource, (err, files) => {
         if(err) {
           console.error(err);
         } else {
@@ -44,7 +45,23 @@ mainRouter.post('/' + resource + '/', (req, res) => {
 
 mainRouter.get('/' + resource + '/', (req, res) => {
   console.log(resource + ' GET hit');
-  res.end();
+  fs.readdir(__dirname + '/../data/' +resource , (err, files) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      debugger;
+      files.forEach( (cur, idx) => {
+        res.write(cur + '\n', function() {
+          if(idx === files.length - 1) {
+            res.end();
+          }
+        });
+      });
+    // res.end();
+    }
+  });
+  // res.end();
 });
 
 mainRouter.put('/'+ resource + '/', (req, res) => {
