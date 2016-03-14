@@ -19,7 +19,7 @@ var writeLog = function(id, chunk) {
   });
 };
 
-mainRouter.post('/' + resource + '/', (req, res) => {
+mainRouter.post(resource, (req, res, urlId) => {
   console.log(resource + ' POST hit');
   req.on('data', (data) => {
     if(nextId == 0) {
@@ -43,7 +43,7 @@ mainRouter.post('/' + resource + '/', (req, res) => {
   res.end();
 });
 
-mainRouter.get('/' + resource + '/', (req, res) => {
+mainRouter.get(resource, (req, res, urlId) => {
   console.log(resource + ' GET hit');
   fs.readdir(__dirname + '/../data/' +resource , (err, files) => {
     if(err) {
@@ -64,13 +64,14 @@ mainRouter.get('/' + resource + '/', (req, res) => {
   // res.end();
 });
 
-mainRouter.put('/'+ resource + '/', (req, res) => {
+mainRouter.put(resource, (req, res, urlId) => {
   console.log(resource + ' PUT hit');
   res.end();
 });
 
-mainRouter.delete('/' + resource + '/', (req, res) => {
+mainRouter.delete(resource, (req, res, urlId) => {
   console.log(resource + ' DELETE hit');
+  console.log(urlId);
   res.end();
 });
 
