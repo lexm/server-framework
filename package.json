@@ -1,21 +1,21 @@
 {
-  "name": "framework",
-  "version": "0.1.0",
-  "license": "ISC",
-  "author": "Lex Myers",
-  "main": "server.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-http": "^2.0.1",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^2.0.0",
-    "gulp-mocha": "^2.2.0"
-  }
+	"name": "basic-router-framework",
+	"version": "0.1.0",
+	"license": "ISC",
+	"author": "Lex Myers",
+	"main": "router.js",
+	"directories": {
+		"test": "test"
+	},
+	"scripts": {
+		"test": "gulp mocha",
+		"start": "node server.js"
+	},
+	"devDependencies": {
+		"chai": "^3.5.0",
+		"chai-http": "^2.0.1",
+		"gulp": "^3.9.1",
+		"gulp-eslint": "^2.0.0",
+		"gulp-mocha": "^2.2.0"
+	}
 }
