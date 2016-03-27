@@ -50,7 +50,6 @@ mainRouter.get(resource, (req, res, splitUrl) => {
       console.log(err);
     } else {
       res.writeHead(200, {'Content-Type': 'text/html'});
-      debugger;
       files.forEach( (cur, idx) => {
         res.write(cur + '\n', function() {
           if(idx === files.length - 1) {
