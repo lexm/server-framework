@@ -2,6 +2,12 @@
 
 This package contains a "router.js" file which can be added to node programs via a require statement. The files in the "routes" directory, as well as the "server.js" are examples of how the framework can be used.
 
+It can be installed by typing:
+
+npm install basic-network-framework
+
+at the command line.
+
 Once a new Router() object is created, the .post(), .get(), .put(), and .delete() methods can be called to assign callbacks. The format is:
 
 newRouter.post(resourceName, callback);

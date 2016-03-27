@@ -9,12 +9,14 @@ var Router = require(__dirname + '/../lib/router');
 var newRouter = new Router;
 
 describe('testing POST route creation', () => {
-  it('should have an object as the POST property of newRouter.routes', () => {
+  it('should have an object as the POST property of newRouter.routes', (done) => {
     expect(newRouter.routes.POST).to.eql({});
+    done();
   });
-  it('should assign a function when newRouter.post() is called', () => {
+  it('should assign a function when newRouter.post() is called', (done) => {
     newRouter.post('testing', function() {
       console.log('testing route POST hit');
     });
+    done();
   });
 });
