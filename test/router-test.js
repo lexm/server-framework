@@ -12,9 +12,9 @@ describe('testing POST route creation', () => {
   it('should have an object as the POST property of newRouter.routes', () => {
     expect(newRouter.routes.POST).to.eql({});
   });
-  it('should assign a function when newRouter.post() is called', {
+  it('should assign a function when newRouter.post() is called', () => {
     newRouter.post('testing', function() {
       console.log('testing route POST hit');
-    })
-  })
+    });
+  });
 });
