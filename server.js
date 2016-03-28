@@ -3,9 +3,9 @@ var Router = require(__dirname + '/lib/router');
 var mainRouter = new Router();
 exports.mainRouter = mainRouter;
 console.dir(mainRouter);
-var mainRoute = require(__dirname + '/routes/mainRoute');
-var albumRoute = require(__dirname + '/routes/albumRoute');
-var songRoute = require(__dirname + '/routes/songRoute');
+require(__dirname + '/routes/mainRoute');
+require(__dirname + '/routes/albumRoute');
+require(__dirname + '/routes/songRoute');
 
 
 
