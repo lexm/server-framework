@@ -4,9 +4,9 @@ This package contains a "router.js" file which can be added to node programs via
 
 It can be installed by typing:
 
-npm install basic-network-framework
+npm install basic-router-framework
 
-at the command line. If the "--production" flag is not set. it will install chai, chai-http, gulp, gulp-eslint, and gulp-mocha as development dependencies. 
+at the command line. If the "--production" flag is not set. it will install chai, chai-http, gulp, gulp-eslint, and gulp-mocha as development dependencies.
 
 Once a new Router() object is created, the .post(), .get(), .put(), and .delete() methods can be called to assign callbacks. The format is:
 
