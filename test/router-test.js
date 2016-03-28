@@ -15,15 +15,17 @@ http.createServer(newRouter.route()).listen(3000, function() {
 });
 
 describe('testing POST route creation', () => {
-  it('should have an object as the POST property of newRouter.routes', (done) => {
+  it('should have an empty object as the POST property of newRouter.routes', (done) => {
     expect(newRouter.routes.POST).to.eql({});
     done();
   });
   it('should assign a function when newRouter.post() is called', (done) => {
     newRouter.post('testing', function(req, res) {
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write('POST hit');
-      res.end();
+      req.on('data', (data) => {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        res.end();
+      });
     });
     expect(newRouter.routes.POST.testing).to.be.a('function');
     done();
@@ -31,20 +33,21 @@ describe('testing POST route creation', () => {
   it('should call that function on hitting /testing POST route', (done) => {
     request('localhost:3000')
     .post('/testing')
+    .send('sent by POST')
     .end(function(err, res) {
       expect(err).to.eql(null);
       if(err) {
         console.error(err);
       } else {
-        expect(res.text).to.eql('POST hit');
-        done();
+        expect(res.text).to.eql('sent by POST');
       }
+      done();
     });
   });
 });
 
 describe('testing GET route creation', () => {
-  it('should have an object as the GET property of newRouter.routes', (done) => {
+  it('should have an empty object as the GET property of newRouter.routes', (done) => {
     expect(newRouter.routes.GET).to.eql({});
     done();
   });
@@ -73,15 +76,17 @@ describe('testing GET route creation', () => {
 });
 
 describe('testing PUT route creation', () => {
-  it('should have an object as the PUT property of newRouter.routes', (done) => {
+  it('should have an empty object as the PUT property of newRouter.routes', (done) => {
     expect(newRouter.routes.PUT).to.eql({});
     done();
   });
-  it('should assign a function when newRouter.post() is called', (done) => {
+  it('should assign a function when newRouter.put() is called', (done) => {
     newRouter.put('testing', function(req, res) {
-      res.writeHead(200, {'Content-Type': 'text/html'});
-      res.write('PUT hit');
-      res.end();
+      req.on('data', (data) => {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        res.end();
+      });
     });
     expect(newRouter.routes.PUT.testing).to.be.a('function');
     done();
@@ -89,20 +94,24 @@ describe('testing PUT route creation', () => {
   it('should call that function on hitting /testing PUT route', (done) => {
     request('localhost:3000')
     .put('/testing')
+    .send('sent by PUT')
     .end(function(err, res) {
       expect(err).to.eql(null);
       if(err) {
         console.error(err);
       } else {
-        expect(res.text).to.eql('PUT hit');
-        done();
+        expect(res.text).to.eql('sent by PUT');
       }
+      done();
     });
   });
 });
 
+
+
+
 describe('testing DELETE route creation', () => {
-  it('should have an object as the DELETE property of newRouter.routes', (done) => {
+  it('should have an empty object as the DELETE property of newRouter.routes', (done) => {
     expect(newRouter.routes.DELETE).to.eql({});
     done();
   });
